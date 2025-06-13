@@ -1,0 +1,186 @@
+{% block content %}
+<html>
+<head>
+{% include 'head.html' %}
+</head>
+<body>
+
+<div class="wrapper d-flex align-items-stretch">
+    {% include 'client_nav.html' %}
+    <div id="content" class="p-3">
+    {% include 'header.html' %}
+  <div class="card shadow-sm mt-4">
+  <div class="card-title p-3 mb-0">
+      <h4 class="card-title mb-0"> Customers 
+	  <a class="btn btn-secondary ml-2 float-right" href="{{ url_for('dashboard') }}"><i class="mdi mdi-keyboard-backspace"></i>Back</a>
+	  <a href="{{ url_for('dashboard') }}" class=" btn btn-primary btn-rounded float-right mr-2">Add Customer<i class="mdi mdi-account-plus ml-2"></i></a>
+	  </h4>
+    </div>
+    <div class="p-3 pt-0">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <!-- <strong>Title</strong> --> {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+	    <div class="table-responsive" >
+        {{table}}
+     </div>
+    </div>
+    {% include '_footer.html' %}
+  </div>
+      
+  </div>
+  
+  </div>
+  
+  <div id="modalViewDetails" class="modal fade" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="modalTitle" class="modal-title"></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-info" data-dismiss="modal" aria-hidden="true">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+{% endblock %}
+<script type="text/javascript" charset="utf8" src="{{ url_for('static',filename='styles/jquery.dataTables.js') }}"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.dataTables.min.css"/>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+<script>
+$(document).ready( function () {
+	clientsDT = $('.mytable').DataTable({
+    "columnDefs": [
+            {
+                "targets": [ 11 ],
+                "visible": false,
+                "searchable": false,
+                "orderable": false
+            },
+            {
+                "targets": [ 2 ],
+                "visible": false,
+                "searchable": false,
+                "orderable": false
+            }
+      ]
+  });
+	//let alert_c = $("#alert_c");
+	let isReporter = '{{user.is_reporter()|safe}}';
+  //$('#clients_tbl tbody').on( 'click', 'tr', function () {
+  //      selRowIndex = clientsDT.row( this ).index();
+        //alert(selRowIndex);
+        
+  //  } );
+
+    $("#clients_tbl tbody").on('click','tr td .text-info',function(e){
+        //e.preventDefault();
+        data = clientsDT.row($(this).closest('tr')).data();
+    });
+	
+	$("#clients_tbl tbody").on('click','tr td .text-primary',function(e){
+		
+		//var isReporter = '{{user.is_reporter()|safe}}';
+        
+		//console.log({{user.is_reporter()}});
+        if(isReporter === 'True'){
+			e.preventDefault();
+			show_unauthorized();
+			
+			//toasterOptions(null);
+			//toastr.error('You do not have authorization!','Error');
+		}else{
+			return true;
+		}
+		
+    });
+	
+	$("#clients_tbl tbody").on('click','tr td .text-danger',function(e){
+		
+		//var isReporter = '{{user.is_reporter()|safe}}';
+        
+		//console.log({{user.is_reporter()}});
+        if(isReporter === 'True'){
+			e.preventDefault();
+			
+			//toasterOptions(null);
+			//toastr.error('You do not have authorization!','Error');
+			show_unauthorized();
+		}else{
+			return true;
+		}
+		
+    });
+	
+	function show_unauthorized(){
+		Swal.fire(
+                      '',
+                      "You do not have authorization.",
+                      'info'
+                    );
+	}
+
+  $("#modalViewDetails").on('show.bs.modal', function (e) {
+    //var data = clientsDT.rows().data()[selRowIndex];
+    // console.log(data[4]);
+    // var version = $(data[10]).text();
+    // var country = $(data[11]).text();
+    //alert(txt); 
+    var href = $(data[10]).prop('href');
+    // verUrl = "/tnc/"+country+version;
+    xhr = new XMLHttpRequest();
+    xhr.open('GET', href, true);
+    xhr.responseType = 'json';
+    xhr.onload = function(e) {
+      if(this.status == 200) {
+        $("#modalTitle").text('Accepted on : '+data[11]);
+        $('#modalViewDetails').find(".modal-body").html(this.response.verbiage);
+      }else{
+        //$("#modalTitle").text('Accepted on :'+data[11]);
+        $('#modalViewDetails').find(".modal-body").html('Unable to load at the moment, please try later.');
+      }
+    };
+    xhr.send();
+    
+
+  });
+  
+  function toasterOptions(hiddenCallback) {
+		toastr.options = {
+			"closeButton": true,
+			"debug": false,
+			"newestOnTop": false,
+			"progressBar": true,
+			"positionClass": "toast-top-right",
+			"preventDuplicates": false,
+			"onclick": null,
+			"onHidden":hiddenCallback,
+			"showDuration": "300",
+			"hideDuration": "1000",
+			"timeOut": "2000",
+			"extendedTimeOut": "1000",
+			"showEasing": "swing",
+			"hideEasing": "linear",
+			"showMethod": "show",
+			"hideMethod": "hide"
+		};
+	};
+	
+});
+</script>
+</html>

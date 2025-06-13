@@ -1,0 +1,113 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% block content %}
+<head>
+{% include 'head.html' %}
+</head>
+<body>
+	<div class="wrapper d-flex align-items-stretch">
+        <div id="content" class="p-5">
+            {% include 'header.html' %}
+            <div class="card-title p-3 mb-0">
+                <h4 class="card-title mb-0"> {{ title }}
+                    <a class="btn btn-secondary ml-2 float-right" href="{{ url_for('trans_menuitem', client=clientid) }}"><i class="mdi mdi-keyboard-backspace"></i>Back</a>
+                </h4>
+            </div>
+            <div class="dashboard">
+                <div class="card">
+                    <div class="card-header">
+                        <a href="{{ url_for('custcodedetails', ttext='SE38 Program', client=clientid) }}" class="title-link">SE38 Program</a>
+                        <span class="sap-icon"><img src="{{ url_for('static',filename='images/newhead.png') }}" /></span>
+                    </div>
+                    <div class="card-content">
+                        <div class="number-text">
+                            <div class="number">{{pgc}}</div>
+                            <div>&nbsp;Programs</div>
+                        </div>
+                        <div class="usage high-usage"><span class="sap-icon"><img src="{{ url_for('static',filename='images/highusage.png') }}" /></span> High Usage</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a href="{{ url_for('custcodedetails', ttext='Function Group', client=clientid) }}" class="title-link">Function Group</a>
+                        <span class="sap-icon"><img src="{{ url_for('static',filename='images/newhead.png') }}" /></span>
+                    </div>
+                    <div class="card-content">
+                        <div class="number-text">
+                            <div class="number">{{ fgc }}</div>
+                            <div>&nbsp;Function Groups</div>
+                        </div>
+                        <div class="usage high-usage"><span class="sap-icon"><img src="{{ url_for('static',filename='images/highusage.png') }}" /></span> High Usage</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a href="{{ url_for('custcodedetails', ttext='Class', client=clientid) }}" class="title-link">Class</a>
+                        <span class="sap-icon"><img src="{{ url_for('static',filename='images/newhead.png') }}" /></span>
+                    </div>
+                    <div class="card-content">
+                        <div class="number-text">
+                            <div class="number">{{ clc }}</div>
+                            <div>&nbsp;Classes</div>
+                        </div>
+                        <div class="usage high-usage"><span class="sap-icon"><img src="{{ url_for('static',filename='images/highusage.png') }}" /></span> High Usage</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a href="{{ url_for('custcodedetails', ttext='Package', client=clientid) }}" class="title-link">Package</a>
+                        <span class="sap-icon"><img src="{{ url_for('static',filename='images/newhead.png') }}" /></span>
+                    </div>
+                    <div class="card-content">
+                        <div class="number-text">
+                            <div class="number">{{ pkc }}</div>
+                            <div>&nbsp;Packages</div>
+                        </div>
+                        <div class="usage high-usage"><span class="sap-icon"><img src="{{ url_for('static',filename='images/highusage.png') }}" /></span> High Usage</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a href="{{ url_for('custcodedetails', ttext='SAP Enhancements', client=clientid) }}" class="title-link">SAP Enhancements</a>
+                        <span class="sap-icon"><img src="{{ url_for('static',filename='images/newhead.png') }}" /></span>
+                    </div>
+                    <div class="card-content">
+                        <div class="number-text">
+                            <div class="number">{{ sec }}</div>
+                            <div>&nbsp;Enhancements</div>
+                        </div>
+                        <div class="usage high-usage"><span class="sap-icon"><img src="{{ url_for('static',filename='images/highusage.png') }}" /></span> High Usage</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a href="{{ url_for('custcodedetails', ttext='Enhancement Implementation', client=clientid) }}" class="title-link">Enhancement Implementation</a>
+                        <span class="sap-icon"><img src="{{ url_for('static',filename='images/newhead.png') }}" /></span>
+                    </div>
+                    <div class="card-content">
+                        <div class="number-text">
+                            <div class="number">{{ eic }}</div>
+                            <div>&nbsp;Implementations</div>
+                        </div>
+                        <div class="usage high-usage"><span class="sap-icon"><img src="{{ url_for('static',filename='images/highusage.png') }}" /></span> High Usage</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a href="{{ url_for('custcodedetails', ttext='Message Class', client=clientid) }}" class="title-link">Message Class</a>
+                        <span class="sap-icon"><img src="{{ url_for('static',filename='images/newhead.png') }}" /></span>
+                    </div>
+                    <div class="card-content">
+                        <div class="number-text">
+                            <div class="number">{{ mcc }}</div>
+                            <div>&nbsp;Message Classes</div>
+                        </div>
+                        <div class="usage high-usage"><span class="sap-icon"><img src="{{ url_for('static',filename='images/highusage.png') }}" /></span> High Usage</div>
+                    </div>
+                </div>
+            </div>
+             {% include '_footer.html' %}
+        </div>
+    </div>
+</body>
+
+{% endblock %}

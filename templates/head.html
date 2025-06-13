@@ -1,0 +1,36 @@
+
+	<title>AMS LCM {{title | safe }}</title>
+    <link rel="stylesheet" type= "text/css" href="{{ url_for('static',filename='styles/bootstrap.min.css') }}" >
+	<link rel="stylesheet" type= "text/css" href="{{ url_for('static',filename='styles/bootstrap-theme.min.css') }}" >
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+	<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/toastr.css') }}">
+    <link rel="stylesheet" type= "text/css" href="{{ url_for('static',filename='styles/materialdesignicons.min.css') }}" >
+	<link href="{{ url_for('static',filename='styles/font-awesome.min.css') }}" rel="stylesheet">
+	<link href="{{ url_for('static',filename='styles/dashboard.css') }}" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
+	<script src="{{ url_for('static',filename='styles/jquery-3.4.1.min.js') }}"></script>
+    <!-- <script src="{{ url_for('static',filename='styles/jquery-3.4.1.slim.min.js') }}" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script> -->
+    <script src="{{ url_for('static',filename='styles/popper.min.js') }}" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static',filename='styles/bootstrap.min.js') }}" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	<script src="{{ url_for('static',filename='styles/waitingFor.js') }}" ></script>
+	<script src="{{ url_for('static',filename='styles/FileSaver.js') }}" ></script>
+	<script src="{{ url_for('static',filename='styles/toastr.min.js') }}" ></script>
+	<link rel="shortcut icon" href="{{ url_for('static',filename='images/dc.ico') }}" type="image/x-icon"/>
+    <script src="{{ url_for('static',filename='styles/sweetalert2.1130.all.min.js') }}" ></script>
+    <link href="{{ url_for('static',filename='styles/flag-icons.min.css') }}" rel="stylesheet">
+  <style>
+  body{
+    background:#ECECED;}
+  </style>
+  <script>
+  $(document).ready(function() {
+    
+      $('#sidebarCollapse').on('click', function () {
+      $('#sidebar').toggleClass('active');
+      if($('#itxheader').css("margin-left") === "250px")
+        $('#itxheader').css('margin-left','0px');
+      else
+        $('#itxheader').css('margin-left','250px');
+    });
+  });
+  </script>

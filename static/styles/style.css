@@ -1,0 +1,144 @@
+body {
+    background: #fff;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+    color: #666666;
+    font-size: 14px;
+}
+
+.tooltip-inner {
+      background-color: #fff; 
+      color: #000;
+      border: 1px solid #000;
+  }
+
+header{
+  background:#fff;
+}
+.card{
+  border-radius: .5rem;
+}
+table .mytable td{
+  min-width:100px;
+}
+.my-class{
+  max-width:150px !important;
+  white-space: normal;
+}
+.table td, .table th {
+  padding: .75rem;
+  font-size: 14px;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+.table thead{
+  background:#f7f7f7;
+}
+
+.no-label .control-label {
+display: none;
+}
+
+.table-bordered thead td, .table-bordered thead th {
+    border-bottom-width: 2px;
+    background: #adb5bd;
+}
+
+table.table-bordered.dataTable th, table.table-bordered.dataTable td {
+    font-size: 13px;
+}
+
+footer {
+  position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: #202851;
+   color: white;
+   text-align: center;
+}
+
+.badge-wrapper {
+     position: relative;
+ }
+
+
+ 
+ .badge-notify{
+   background:red;
+   position:relative;
+   top: -15px;
+   left: -15px;
+}
+
+#content {
+    width: 100%;
+    padding: 0;
+    min-height: 100vh;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+    margin-top: 30px;
+}
+
+.kv-avatar .krajee-default.file-preview-frame,.kv-avatar .krajee-default.file-preview-frame:hover {
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    text-align: center;
+}
+.kv-avatar {
+    display: inline-block;
+}
+.kv-avatar .file-input {
+    display: table-cell;
+    width: 213px;
+}
+.kv-reqd {
+    color: red;
+    font-family: monospace;
+    font-weight: normal;
+}
+
+.profile_info {
+    position: relative;
+}
+
+.profile_info .author_name h4 {
+    color: #434750;
+    margin-bottom: 0;
+    line-height: 18px;
+}
+
+.f_w_500 {
+    font-weight: 500;
+}
+
+.f_w_400 {
+    font-weight: 400;
+}
+
+.f_s_15 {
+    font-size: 15px;
+}
+
+.f_s_12 {
+    font-size: 10px;
+}
+
+.mr_20 {
+    margin-right: 20px;
+}
+
+.profileDropdown .dropdown-toggle::after {
+    display: inline-block;
+    margin-left: 4.255em;
+}
+.profileDropdown button {
+    text-align: left !important;
+}
+.profileDropdown h4 {
+    line-height: 8px;
+}

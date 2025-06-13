@@ -1,0 +1,218 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% block content %}
+<head>
+{% include 'head.html' %}
+</head>
+<body>
+	<div class="wrapper d-flex align-items-stretch">
+        <div id="content" class="p-5">
+            {% include 'header.html' %}
+            <div class="card-title p-3 mb-0">
+                <h4 class="card-title mb-0"> {{ title }}
+                    <a class="btn btn-secondary ml-2 float-right" href="{{ url_for('dashboard', client=clientid ) }}"><i class="mdi mdi-keyboard-backspace"></i>Home</a>
+                </h4>
+            </div>
+            <div class="dashboard">
+                <div class="card">
+                    <div class="card-header">
+                        {% if scount == 0 %}
+                            <a href="#" class="title-link">System Landscape</a>
+                        {% else %}
+                            <a href="{{ url_for('sys_menuitem', client=clientid , code='System Landscape') }}" class="title-link">System Landscape</a>
+                        {% endif %}
+                        <span class="sap-icon"><img src="{{ url_for('static',filename='images/newhead.png') }}" /></span>
+                    </div>
+                    <div class="card-content">
+                        <div class="number-text">
+                            <div class="number">{{ scount }}</div>
+                            <div>&nbsp;Systems</div>
+                        </div>
+                        <!-- <div class="usage high-usage"><span class="sap-icon"><img src="{{ url_for('static',filename='images/highusage.png') }}" /></span> High Usage</div> -->
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        {% if ccount == 0 %}
+                            <a href="#" class="title-link">Company</a>
+                        {% else %}
+                            <a href="{{ url_for('com_menuitem', code='Company', client=clientid) }}" class="title-link">Company</a>
+                        {% endif %}
+                        <span class="sap-icon"><img src="{{ url_for('static',filename='images/newhead.png') }}" /></span>
+                    </div>
+                    <div class="card-content">
+                        <div class="number-text">
+                            <div class="number">{{ ccount }}</div>
+                            <div>&nbsp;Finance Orgs</div>
+                        </div>
+                        <!-- <div class="usage high-usage"><span class="sap-icon"><img src="{{ url_for('static',filename='images/highusage.png') }}" /></span> High Usage</div> -->
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        {% if salorgCount == 0 %}
+                            <a href="#" class="title-link">Sales Org</a>
+                        {% else %}
+                            <a href="{{ url_for('sal_menuitem', code='Sales Org', client=clientid) }}" class="title-link">Sales Org</a>
+                        {% endif %}
+                        <span class="sap-icon"><img src="{{ url_for('static',filename='images/newhead.png') }}" /></span>
+                    </div>
+                    <div class="card-content">
+                        <div class="number-text">
+                            <div class="number">{{ salorgCount }}</div>
+                            <div>&nbsp;Sales Orgs</div>
+                        </div>
+                        <!-- <div class="usage high-usage"><span class="sap-icon"><img src="{{ url_for('static',filename='images/highusage.png') }}" /></span> High Usage</div> -->
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        {% if purCount == 0 %}
+                            <a href="#" class="title-link">Purchase Org</a>
+                        {% else %}
+                        <a href="{{ url_for('pur_menuitem', code='Purchase Org', client=clientid) }}" class="title-link">Purchase Org</a>
+                        {% endif %}
+                        <span class="sap-icon"><img src="{{ url_for('static',filename='images/newhead.png') }}" /></span>
+                    </div>
+                    <div class="card-content">
+                        <div class="number-text">
+                            <div class="number">{{purCount }}</div>
+                            <div>&nbsp;Purchase Orgs</div>
+                        </div>
+                        <!-- <div class="usage high-usage"><span class="sap-icon"><img src="{{ url_for('static',filename='images/highusage.png') }}" /></span> High Usage</div> -->
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        {% if plantCount == 0 %}
+                            <a href="#" class="title-link">Plant</a>
+                        {% else %}
+                            <a href="{{ url_for('pla_details', soln='Plant', client=clientid) }}" class="title-link">Plant</a>
+                        {% endif %}
+                        <span class="sap-icon"><img src="{{ url_for('static',filename='images/newhead.png') }}" /></span>
+                    </div>
+                    <div class="card-content">
+                        <div class="number-text">
+                            <div class="number">{{ plantCount }}</div>
+                            <div>&nbsp;Plants</div>
+                        </div>
+                        <!-- <div class="usage high-usage"><span class="sap-icon"><img src="{{ url_for('static',filename='images/highusage.png') }}" /></span> High Usage</div> -->
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        {% if bp1Count == 0 %}
+                            <a href="#" class="title-link">Business Process Level 1</a>
+                        {% else %}
+                            <a href="{{ url_for('bp1_db', client=clientid) }}" class="title-link">Business Process Level 1</a>
+                        {% endif %}
+                        <span class="sap-icon"><img src="{{ url_for('static',filename='images/newhead.png') }}" /></span>
+                    </div>
+                    <div class="card-content">
+                        <div class="number-text">
+                            <div class="number">{{ bp1Count }}</div>
+                            <div>&nbsp;Business Process</div>
+                        </div>
+                        <!-- <div class="usage high-usage"><span class="sap-icon"><img src="{{ url_for('static',filename='images/highusage.png') }}" /></span> High Usage</div> -->
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        {% if bp2Count == 0 %}
+                            <a href="#" class="title-link">Business Process Level 2</a>
+                        {% else %}
+                            <a href="{{ url_for('bp2_graph', code='bp2', client=clientid) }}" class="title-link">Business Process Level 2</a>
+                        {% endif %}
+                        <span class="sap-icon"><img src="{{ url_for('static',filename='images/newhead.png') }}" /></span>
+                    </div>
+                    <div class="card-content">
+                        <div class="number-text">
+                            <div class="number">{{ bp2Count }}</div>
+                            <div>&nbsp;Business Process</div>
+                        </div>
+                        <!-- <div class="usage high-usage"><span class="sap-icon"><img src="{{ url_for('static',filename='images/highusage.png') }}" /></span> High Usage</div> -->
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        {% if CCCount == 0 %}
+                            <a href="#" class="title-link">Custom Code Analysis</a>
+                        {% else %}
+                            <a href="{{ url_for('cust_code', client=clientid ) }}" class="title-link">Custom Code Analysis</a>
+                        {% endif %}
+                        <span class="sap-icon"><img src="{{ url_for('static',filename='images/newhead.png') }}" /></span>
+                    </div>
+                    <div class="card-content">
+                        <div class="number-text">
+                            <div class="number">{{ CCCount }}</div>
+                            <div>&nbsp;Custom Codes</div>
+                        </div>
+                        <!-- <div class="usage high-usage"><span class="sap-icon"><img src="{{ url_for('static',filename='images/highusage.png') }}" /></span> High Usage</div> -->
+                    </div>
+                </div>
+                <!-- <div class="card">
+                    <div class="card-header">
+                        {% if MCount == 0 %}
+                            <a href="#" class="title-link">Master</a>
+                        {% else %}
+                            <a href="{{ url_for('master', client=clientid ) }}" class="title-link">Master</a>
+                        {% endif %}
+                        <span class="sap-icon"><img src="{{ url_for('static',filename='images/newhead.png') }}" /></span>
+                    </div>
+                    <div class="card-content">
+                        <div class="number-text">
+                            <div class="number">{{ MCount }}</div>
+                            <div>&nbsp;Masters</div>
+                        </div>
+                        <!-- <div class="usage high-usage"><span class="sap-icon"><img src="{{ url_for('static',filename='images/highusage.png') }}" /></span> High Usage</div> 
+                    </div>
+                </div> -->
+                <div class="card">
+                    <div class="card-header">
+                        {% if MMCount == 0 %}
+                            <a href="#" class="title-link">Master</a>
+                        {% else %}
+                            <a href="{{ url_for('material_master', client=clientid ) }}" class="title-link">Master</a>
+                        {% endif %}
+                        <span class="sap-icon"><img src="{{ url_for('static',filename='images/newhead.png') }}" /></span>
+                    </div>
+                    <div class="card-content">
+                        <div class="number-text">
+                            <div class="number">{{ MMCount }}</div>
+                            <div>&nbsp;Masters</div>
+                        </div>
+                        <!-- <div class="usage high-usage"><span class="sap-icon"><img src="{{ url_for('static',filename='images/highusage.png') }}" /></span> High Usage</div> -->
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a href="{{ url_for('showDocument', client=clientid) }}" class="title-link">Document</a>
+                        <span class="sap-icon"><img src="{{ url_for('static',filename='images/newhead.png') }}" /></span>
+                    </div>
+                    <div class="card-content">
+                        <div class="number-text">
+                            <div class="number">2</div>
+                            <div>&nbsp;Documents</div>
+                        </div>
+                        <!-- <div class="usage high-usage"><span class="sap-icon"><img src="{{ url_for('static',filename='images/highusage.png') }}" /></span> High Usage</div> -->
+                    </div>
+                </div>
+                <!-- <div class="card">
+                    <div class="card-header">
+                        <a href="https://ndbs-spi.eu10.process-insights.cloud.sap/reports/system/4caa0b35-5f1b-4600-bf37-e9cde0ca3362/start"  target="_blank" class="title-link">Signavio Process-Insights</a>
+                        <span class="sap-icon"><img src="{{ url_for('static',filename='images/newhead.png') }}" /></span>
+                    </div>
+                    <div class="card-content">
+                        <div class="number-text">
+                            <div class="number">1</div>
+                            <div>&nbsp;Process-Insights</div>
+                        </div>
+                        <div class="usage high-usage"><span class="sap-icon"><img src="{{ url_for('static',filename='images/highusage.png') }}" /></span> High Usage</div>
+                    </div>
+                </div> -->
+            </div>
+             {% include '_footer.html' %}
+        </div>
+    </div>
+</body>
+
+{% endblock %}

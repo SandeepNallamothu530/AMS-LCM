@@ -1,0 +1,49 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% block content %}
+<head>
+{% include 'head.html' %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+   
+      <div class="wrapper d-flex align-items-stretch">
+      <div id="content" class="p-3">
+        {% include 'header.html' %}
+        <div class="container">
+            <div class="tiles">
+                <div class="tile" onclick="location.href='#'">
+                    <i class="fas fa-exchange-alt"></i>
+                    <p>
+                        <a href="{{ url_for('trans_menuitem', client=clientid) }}" >
+                        Transition</a></p>
+                </div>
+                <div class="tile" onclick="location.href='#'">
+                    <i class="fas fa-balance-scale"></i>
+                    <p>Stabilization</p>
+                </div>
+                <div class="tile" onclick="location.href='#'">
+                    <i class="fas fa-chart-line"></i>
+                    <p>Optimization</p>
+                </div>
+                <div class="tile" onclick="location.href='#'">
+                    <i class="fas fa-sync-alt"></i>
+                    <p>Transformation</p>
+                </div>
+                <!-- <div class="tile" onclick="location.href='#'">
+                    <i class="fa-solid fa-gear"></i>
+                    <p><a href="{{ url_for('admin') }}" >
+                        Administration</a></p>
+                </div> -->
+            </div>
+        </div>
+       
+    </div>
+    {% include '_footer.html' %}
+</div>
+</div>
+</div>
+
+</body>
+ 
+ 
+{% endblock %}

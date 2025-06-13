@@ -1,0 +1,305 @@
+{% block content %}
+<html>
+<head>
+{% include 'head.html' %}
+</head>
+<body>
+    <div class="wrapper d-flex align-items-stretch">
+    {% include 'user_nav.html' %}
+    <div id="content" class="p-3">
+    {% include 'header.html' %}
+      
+    
+  <div class="card shadow-sm mt-4">
+  <div class="card-title p-3 mb-0">
+      <h4 class="card-title mb-0"> Users 
+	  <a href="{{ url_for('registeruser') }}" class=" btn btn-info btn-rounded ml-3">Add User<i class="mdi mdi-account-plus ml-2"></i></a>
+	  <a class="btn btn-secondary ml-2 float-right" href="{{ url_for('dashboard') }}"><i class="mdi mdi-keyboard-backspace"></i>Back</a>
+    </h4>
+    </div>
+    <div class="p-3 pt-0">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <!-- <strong>Title</strong> --> {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+	  
+  
+          <div class="table-responsive" id="userList">
+    <table id="userT" class="table table-bordered tableU w-100">
+        <thead><tr><th>Action</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Contact Number</th>
+        <th>Country</th><th>User group</th><th>Mapped Regions</th><th>User UID</th><th>User Status</th><th>Created at</th><th>Modified at</th><th>Created by</th><th>Modified by</th></tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+        <tr>
+        <td>
+        
+          {% if user.get_status() == 'ACTIVE' %}
+          {% set a_class = "text-danger" %}
+          {% set a_id = "disableA" %}
+          {% set a_title = "Disable user" %}
+          {% set a_icon = "mdi mdi-account-alert" %}
+          {% else %}
+          {% set a_class = "text-success" %}
+          {% set a_id = "enableA" %}
+          {% set a_title = "Enable user" %}
+          {% set a_icon = "mdi mdi-account-check" %}
+          {% endif %} 
+
+        <a class="text-info" data-toggle="modal" data-target="#modalViewDetails"><i class="mdi mdi-eye"></i></a>
+		{% if not user.is_super_admin() %}
+        <a class="text-warning" href="{{ url_for('edit_user', uid= user.id) }}" data-toggle="tooltip" title="Update user details" role="button"><i class="mdi mdi-account-edit"></i></a>
+        {% endif %}
+		<!-- <a class="text-danger" href="" id="deleteA" data-toggle="tooltip" title="Delete user" role="button"><i class="mdi mdi-account-minus"></i></a> -->
+       
+	<a class="{{ a_class }}" href="" id="{{a_id}}" data-toggle="tooltip" title="{{a_title}}" role="button"><i class="{{a_icon}}"></i></a>
+	
+	{% if user.get_status() != 'RESET' %} 
+        <a class="text-dark" href="" id="resetPwdA" data-toggle="tooltip" title="Reset password" role="button"><i class="mdi mdi-account-key"></i></a>
+     {% endif %}   
+        </td>
+        <td>{{ user.first_name }}</td>
+        <td>{{ user.last_name }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.contact_no }}</td>
+        <td>{{ user.country }}</td>
+        <td>{{ user.role }}</td>
+		<td>{{ user.get_mapped_regions_str() }}</td>
+        <td>{{ user.id }}</td>
+        <td>{{ user.get_status() }}</td>
+        <td>{{ user.created_at }}</td>
+        <td>{{ user.updated_at }}</td>
+		<td>{{ user.created_by }}</td>
+		<td>{{ user.updated_by }}</td>
+        </tr>
+        
+
+        {% endfor %}
+        </tbody>
+        </table>
+    </div>
+	
+	<div id="modalViewDetails" class="modal fade" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="modalTitle" class="modal-title"></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-info" data-dismiss="modal" aria-hidden="true">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+	
+    </div>
+  </div>
+    {% include '_footer.html' %}  
+  </div>
+  </div>
+   
+{% endblock %}
+<script type="text/javascript" charset="utf8" src="{{ url_for('static',filename='styles/jquery.dataTables.js') }}"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.dataTables.min.css"/>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+<script>
+$(document).ready( function () {
+    //var utable = $('.tableU').DataTable();
+    //$('.userT').DataTable();
+    var selRowIndex;
+	var utable = $('.tableU').DataTable({
+		"columnDefs": [
+            {
+                "targets": [ 7 ],
+                "visible": false,
+                "searchable": false,
+                "orderable": false
+            },
+            {
+                "targets": [ 8 ],
+                "visible": false,
+                "searchable": false,
+                "orderable": false
+            },
+            {
+                "targets": [ 10 ],
+                "visible": false,
+                "searchable": false,
+                "orderable": false
+            },
+            {
+                "targets": [ 11 ],
+                "visible": false,
+                "searchable": false,
+                "orderable": false
+            },
+            {
+                "targets": [ 12 ],
+                "visible": false,
+                "searchable": false,
+                "orderable": false
+            },
+            {
+                "targets": [ 13 ],
+                "visible": false,
+                "searchable": false,
+                "orderable": false
+            }
+      ]
+  });
+  
+  $('#userT tbody').on( 'click', 'tr td .text-info', function () {
+        //selRowIndex = utable.row( this ).index();
+        var data = utable.row( $(this).closest('tr') ).data();
+        $("#modalViewDetails").modal('show');
+
+        $("#modalViewDetails").on('shown.bs.modal', function (e) {
+          
+              // var data = utable.rows().data()[selRowIndex];
+          $("#modalTitle").text('Details for '+data[1]+','+data[2]);
+              $(this).find(".modal-body").html("<table><tr><th>User UID</th><td>"+
+            data[8]+"</td></tr><tr><th>Mapped regions</th><td>"+data[7]+"</td></tr><tr><th>Created at</th><td>"+data[10]+
+            "</td></tr><tr><th>Modified at</th><td>"+data[11]+"</td></tr><tr><th>Created by</th><td>"+data[12]+
+            "</td></tr><tr><th>Modified by</th><td>"+data[13]+"</td></tr></table>");
+        });
+        
+    } );
+  
+  $("#userT tbody").on('click','tr td .text-dark',function(e){
+        e.preventDefault();
+        var data = utable.row($(this).closest('tr')).data();
+		Swal.fire({
+          title: 'Are you sure?',
+          text: "The user with Id "+data[3]+" will be reset !",
+          //icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#007bff',
+          cancelButtonColor: '#dc3545',
+          confirmButtonText: 'Yes, reset!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+		  var xhr = new XMLHttpRequest();
+		  xhr.responseType = 'json';
+		  disUrl = "/reset_pwd/"+data[3] ;
+		  xhr.open('GET', disUrl, true);
+		  xhr.onload = function(e) {
+		  if(this.status == 200) {
+			  Swal.fire(
+						  'Reset!',
+						  this.response.message,
+						  'success'
+						).then(() => {
+							location.reload();
+						});
+		  }else{
+                    Swal.fire(
+                      'Failed!',
+					  this.response.message,
+                      'error'
+                    )
+                }
+			};
+			xhr.send();
+		  
+		  }
+		  });
+	
+	});
+	
+	$("#userT tbody").on('click','tr td .text-danger',function(e){
+        e.preventDefault();
+        var data = utable.row($(this).closest('tr')).data();
+		Swal.fire({
+          title: 'Are you sure?',
+          text: "The user with Id "+data[3]+" will be disabled !",
+          //icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#007bff',
+          cancelButtonColor: '#dc3545',
+          confirmButtonText: 'Yes, disable!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+		  var xhr = new XMLHttpRequest();
+		  xhr.responseType = 'json';
+		  disUrl = "/set_user_status/"+data[3]+"?status=INACTIVE" ;
+		  xhr.open('GET', disUrl, true);
+		  xhr.onload = function(e) {
+		  if(this.status == 200) {
+			  Swal.fire(
+						  'Disabled!',
+						  this.response.message,
+						  'success'
+						).then(() => {
+							location.reload();
+						});
+		  }else{
+                    Swal.fire(
+                      'Failed!',
+					  this.response.message,
+                      'error'
+                    )
+                }
+			};
+			xhr.send();
+		  
+		  }
+		  });
+	});
+		  
+	$("#userT tbody").on('click','tr td .text-success',function(e){
+        e.preventDefault();
+        var data = utable.row($(this).closest('tr')).data();
+		Swal.fire({
+          title: 'Are you sure?',
+          text: "The user with Id "+data[3]+" will be enabled !",
+          //icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#007bff',
+          cancelButtonColor: '#dc3545',
+          confirmButtonText: 'Yes, enable!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+		  var xhr = new XMLHttpRequest();
+		  xhr.responseType = 'json';
+		  disUrl = "/set_user_status/"+data[3]+"?status=ACTIVE" ;
+		  xhr.open('GET', disUrl, true);
+		  xhr.onload = function(e) {
+		  if(this.status == 200) {
+			  Swal.fire(
+						  'Enabled!',
+						  this.response.message,
+						  'success'
+						).then(() => {
+							location.reload();
+						});
+		  }else{
+                    Swal.fire(
+                      'Failed!',
+					  this.response.message,
+                      'error'
+                    )
+                }
+			};
+			xhr.send();
+		  
+		  }
+		  });
+	});
+  
+  
+  
+  });
+</script>

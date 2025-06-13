@@ -1,0 +1,53 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% block content %}
+<head>
+  <title>LCM AMS - Login</title>
+  <link rel="stylesheet" type= "text/css" href="{{ url_for('static',filename='styles/bootstrap.min.css') }}" media="screen">
+  <script src="{{ url_for('static',filename='styles/jquery-3.4.1.slim.min.js') }}" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="{{ url_for('static',filename='styles/popper.min.js') }}" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="{{ url_for('static',filename='styles/bootstrap.min.js') }}" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/login.css') }}">
+  <link rel="shortcut icon" href="{{ url_for('static',filename='images/dc.ico') }}" type="image/x-icon"/>
+  <link href="{{ url_for('static',filename='styles/font-awesome.min.css') }}" rel="stylesheet">
+  <link rel="stylesheet" type= "text/css" href="{{ url_for('static',filename='styles/sweetalert2.1130.min.css') }}" >
+  <script src="{{ url_for('static',filename='styles/sweetalert2.1130.all.min.js') }}" ></script>
+</head>
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+   <div class="row">
+   <div class="col">  
+  <div class="fadeIn first mt-2">
+      <img src="{{ url_for('static',filename='images/ntt-logo.png') }}" id="icon" alt="NTT DATA Business Solutions">
+    </div>
+   </div>
+     <div class="col">
+ <!-- <img src="{{ url_for('static',filename='images/data-logo.svg') }}" id="icon" alt="Data"> -->
+  <p class="mb-0">Welcome</p>
+  <p class="mb-0">Continue to login</p>
+    <!-- Login Form -->
+    <form class="mb-5" action="login" method="post">
+      <input type="text" name="username" id="username" class="form-control mb-3" placeholder="username">
+      <div class="input-group" id="show_hide_password">
+        <input type="password" name="password" class="form-control mb-3" placeholder="password">
+        <div class="input-group-addon mt-2">
+            <a href="" class="text-muted"><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+        </div>
+      </div>
+      <select name="customer" id="customer"  class="form-control mb-3">
+        {% for sol in cust %}
+        <option value="{{ sol[0] }}">{{ sol[1] }}</option>
+        {% endfor %}
+      </select>  
+      
+  <input type="submit" class="btn btn-danger" value="Log In" style="margin: 0;">
+  <input type="button" id="fgtpwd" class="btn btn-secondary" value="Reset/Forgot Password" style="margin: 0;">
+  <span class="error">{{ message | safe }}</span>
+    </form>
+   </div> 
+  </div>
+  </div>
+  {% include '_footer.html' %} 
+</div>
+{% endblock %}
+

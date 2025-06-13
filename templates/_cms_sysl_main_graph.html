@@ -1,0 +1,43 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% block content %}
+<head>
+{% include 'head.html' %}
+</head>
+<body>
+	<div class="wrapper d-flex align-items-stretch">
+    <div id="content" class="p-3">
+        {% include 'header.html' %}
+        <div class="card-title p-3 mb-0">
+            <h4 class="card-title mb-0">
+            <a class="btn btn-secondary ml-2 float-right" href="{{ url_for('sys_menuitem', client=clientid , code='System Landscape') }}"><i class="mdi mdi-keyboard-backspace"></i>Back</a>
+          </h4>
+          </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4">
+                <div class="card-box bg-white">
+                    <h3> {{ title }} </h3>
+                    <div class="card-body bg-white">
+                        <div class="table-responsive" id="userList">
+                            <table id="userT" class="table table-bordered tableU w-100">
+                                <thead><tr><th>Code</th><th>Detail</th></tr> </thead>
+                                <tbody>
+                                {% for sol in sids %}
+                                <tr>
+                                <td>{{ sol[0] }}</td>
+                                <td>{{ sol[1] }}</td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include '_footer.html' %}
+</div>
+</div>
+</body>
+
+{% endblock %}

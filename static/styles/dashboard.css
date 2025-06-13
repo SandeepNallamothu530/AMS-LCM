@@ -1,0 +1,346 @@
+body{
+background:#eee;    
+}
+[role="main"] {
+  padding-top: 48px; /* Space for fixed navbar */
+}
+/*
+ * Sidebar
+ */
+ 
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100; /* Behind the navbar */
+  padding: 48px 0 0; /* Height of navbar */
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+  font-size: 1rem;
+  width: 300px;
+}
+
+.sidebar-sticky {
+  position: relative;
+  top: 0;
+  height: calc(100vh - 48px);
+  padding-top: 1.5rem;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+
+@supports ((position: -webkit-sticky) or (position: sticky)) {
+  .sidebar-sticky {
+    position: -webkit-sticky;
+    position: sticky;
+  }
+}
+
+.sidebar .nav-link {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.sidebar .nav-link .feather {
+  margin-right: 4px;
+  color: #999;
+}
+
+.sidebar .nav-link.active {
+    font-size: 1rem;
+    color: #007bff;
+}
+
+.sidebar .nav-link:hover .feather,
+.sidebar .nav-link.active .feather {
+  color: inherit;
+}
+
+.sidebar-heading {
+    font-size: 1rem;
+  text-transform: uppercase;
+}
+
+@media only screen and (max-width: 768px) {
+.sidebar {
+   display:none;
+}
+}
+.nav-link[data-toggle].collapsed:after {
+    font-size: 1rem;
+    content: " ▾";
+}
+.nav-link[data-toggle]:not(.collapsed):after {
+    font-size: 1rem;
+    content: " ▴";
+}
+.nav-link {
+    font-size: 1rem;
+    display: block;
+    padding: 0.5rem 0;
+}
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+.card {
+    background-color: #6785C1;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 18px;
+}
+.card-content {
+    background-color: #E4F8FF;
+    color: black;
+    margin-top: 10px;
+    padding: 15px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+}
+.usage {
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+.sap-icon {
+    font-family: "SAP-icons";
+    font-size: 18px;
+    margin-left: 5px;
+    margin-right: 8px;
+}
+.header {
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header img {
+    width: 150px;
+}
+.number-text {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+a.title-link {
+    color: white;
+    text-decoration: none;
+}
+.low-usage {
+    background-color: #000000;
+    color: #f00;
+}
+.high-usage {
+    background-color: #000000;
+    color: #0f0;
+}
+.bg-blue {
+    background-color: #00008B !important;
+}
+.bg-gray {
+    background-color:  #D3D3D3 !important;
+}
+.bg-white {
+    background-color:  white !important;
+}
+.bg-green {
+    background-color: #ff0000 !important;
+}
+.bg-orange {
+    background-color: #e7e136c9 !important;
+}
+.bg-red {
+    background-color: #f00 !important;
+}
+.bg-nttblue{
+    background-color: #0072BC !important;
+}
+.bg-nttred{
+    background-color: #bc4328 !important;
+}
+.bg-yellow{
+    color: #e5f505f6 !important;
+}
+.bg-black{
+    color: #000000 !important;
+}
+.bg-byellow{
+    background-color: #e5f505f6 !important;
+}
+.bg-bblack{
+    background-color: #000000 !important;
+}
+
+.list-unstyled {
+    padding-left: 0;
+    list-style: none;
+}
+
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    background: #1d1919;
+    color: #fff;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+#sidebar .logo {
+    display: block;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+}
+
+#sidebar ul li a {
+    padding: 10px 0;
+    display: block;
+    color: #ffffff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+#sidebar .img {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+
+.barchart{
+    border: 1px solid #aeaeae; 
+    background-color: #00008B; 
+    width: 200px; 
+    height: 70px;
+    position : relative;
+}
+
+.barchart > div{
+    bottom: 0px;
+    width: 50px;
+    position : absolute;
+    margin: 1px;
+    display : inline-block; 
+}
+
+.chart-container {
+    position: relative;
+    width: 100%;
+    height: 200px;
+}
+.chart-container canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.chart-container .chart-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+}
+
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: left;
+    text-align: left;
+    margin-left: 0px;
+}
+.tiles {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+    max-width: 1200px;
+}
+.tile {
+    background: linear-gradient(135deg, rgba(25, 163, 252, 0.8) 75%, #060D25 75%); /* Reversed dual color */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    height: 200px; /* Reduced tile height */
+    padding-right: 40px; /* Added more padding to right side */
+    padding-bottom: 40px; /* Added more padding to bottom */
+    width: 310px;
+}
+.tile:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+.tile i {
+    font-size: 6em; /* Increased icon size */
+    margin-bottom: 10px;
+    color: #fff;
+    stroke-width: 1;
+}
+.tile p {
+    margin: 0;
+    font-size: 1.5em;
+    color: #fff;
+}
+.tile a {
+    margin: 0;
+    font-size: 1em;
+    color: #fff;
+}
+.tile img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 150px; /* Made curve image bigger */
+    height: auto;
+    opacity: 0.5;
+}
+
+.chat-popup {
+    display: block;
+    position: fixed;
+    bottom: 50px;
+    right: 15px;
+    border: 3px solid #f1f1f1;
+    z-index: 9;
+    width: 400px;
+    height: 400px;
+  }

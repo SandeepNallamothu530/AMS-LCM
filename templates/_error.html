@@ -1,0 +1,45 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% block content %}
+<html>
+	<head>
+    <title>Failed</title>
+        <link rel="stylesheet" type= "text/css" href="{{ url_for('static',filename='styles/bootstrap.min.css') }}" >
+		<link rel="stylesheet" type= "text/css" href="{{ url_for('static',filename='styles/bootstrap-theme.min.css') }}" >
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+        <link rel="stylesheet" type= "text/css" href="{{ url_for('static',filename='styles/materialdesignicons.min.css') }}" >
+		<link rel="stylesheet" type= "text/css" href="{{ url_for('static',filename='styles/countrySelect.css') }}" >
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
+         <script src="{{ url_for('static',filename='styles/jquery-3.4.1.slim.min.js') }}" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="{{ url_for('static',filename='styles/popper.min.js') }}" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="{{ url_for('static',filename='styles/bootstrap.min.js') }}" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <link rel="shortcut icon" href="{{ url_for('static',filename='images/dc.ico') }}" type="image/x-icon"/>
+    
+	</head>
+	<body>
+	<header>
+        <div class="navbar shadow-sm">
+          <div class="container d-flex justify-content-between">
+            <a href="#" class="navbar-brand d-flex align-items-center">
+                <img src="{{ url_for('static',filename='images/logo_with_itelligence.png') }}" />
+            </a>
+          </div>
+        </div>
+		
+      </header>
+    <section>
+    <br>
+    <br>
+    <div class="container">
+        <div class="alert alert-danger">
+        <span class="mdi mdi-close-circle"></span>
+            <strong>Failed!</strong><br> 
+            <p>{{message|safe}}
+        </div>
+    </div>
+
+    </section>
+    </body>
+{% endblock %}
+	
+	
+</html>

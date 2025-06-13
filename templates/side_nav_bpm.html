@@ -1,0 +1,118 @@
+<nav id="sidebar" class="bg-nttblue">
+	<ul class="list-unstyled px-3">
+		<li class="list-unstyled nav-item active">
+			<a class="nav-link active text-white" href="{{ url_for('dashboard') }}">
+				<span class="mdi mdi-view-dashboard"></span>
+				Dashboard <span class="sr-only">(current)</span>
+			</a>
+		</li>  
+		<li class="list-unstyled nav-link">
+			<a href="#TransitionSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle collapsed bg-yellow">Transition</a>
+			</a>
+			<ul class="list-unstyled" id="TransitionSubmenu">
+				<li class="nav-item">
+					<a class="nav-link" href="{{ url_for('sys_graph', client=clientid) }}">
+						<span class="mdi mdi-plus-circle"></span>
+						System Landscape
+					</a>
+				</li>
+				<li class="list-unstyled mb-2">
+					<a href="#OrgSubMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle collapsed bg-yellow">Organization</a>
+					</a>
+					<ul class="list-unstyled collapse" id="OrgSubMenu">
+						<li class="nav-item">
+							<a class="nav-link" href="{{ url_for('com_graph', code='com', client=clientid) }}">
+								<span class="mdi mdi-plus-circle"></span>
+								Company
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ url_for('sal_graph', code='sal', client=clientid) }}">
+								<span class="mdi mdi-plus-circle"></span>
+								Sales Org
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ url_for('pur_graph', code='pur', client=clientid) }}">
+								<span class="mdi mdi-plus-circle"></span>
+								Purchase Org
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ url_for('pla_graph', soln='Plant',client=clientid) }}">
+								<span class="mdi mdi-plus-circle"></span>
+								Plant
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="list-unstyled mb-2"></li>
+					<a href="#BPMSubMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle collapsed bg-yellow">BPM</a>
+					</a>
+					<ul class="list-unstyled" id="BPMSubMenu">
+						<li class="nav-item">
+							<a class="nav-link" href="{{ url_for('bp1_db', client=clientid) }}">
+								<span class="mdi mdi-plus-circle"></span>
+								BPM - Level 1 
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ url_for('bp2_graph', code='bp2', client=clientid) }}">
+								<span class="mdi mdi-plus-circle"></span>
+								BPM - Level 2 
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ url_for('cust_graph', client=clientid ) }}">
+						<span class="mdi mdi-plus-circle"></span>
+						Custom Code analysis 
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ url_for('dashboard') }}">
+						<span class="mdi mdi-plus-circle"></span>
+						Documentation 
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="https://nttdata-solutions.enable-now.cloud.sap/ng/#/home" target="_blank">
+						<span class="mdi mdi-plus-circle"></span>
+						SAP Enable Now 
+					</a>
+				</li>
+				<li class="list-unstyled mb-2">
+					<a href="#SigSubMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle collapsed bg-yellow">SAP Signavio Insigts</a>
+					</a>
+					<ul class="list-unstyled collapse" id="SigSubMenu">
+						<li>
+							<a class="nav-link" href="{{ url_for('signov') }}">
+								<span class="mdi mdi-plus-circle"></span>
+								Overview 
+							</a>
+						</li>
+						<li>
+							<a class="nav-link" href="{{ url_for('sigins') }}">
+								<span class="mdi mdi-plus-circle"></span>
+								Insigts 
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ url_for('tickets_graph') }}">
+						<span class="mdi mdi-plus-circle"></span>
+						Tickets
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="ms-excel:ofe|u|https://apptrans-boisterous-crane-lw.cfapps.eu10.hana.ondemand.com/static/images/SecurityAutomationTool.xlsm">
+						<span class="mdi mdi-plus-circle"></span>
+						Security Automation
+					</a>
+				</li>
+			</ul>
+		</li>
+	</ul> 
+</nav>

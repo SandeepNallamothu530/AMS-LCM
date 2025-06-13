@@ -1,0 +1,131 @@
+      <nav id="sidebar" class="bg-nttblue">
+      <a href="{{ url_for('user_profile') }}" class="img logo rounded-circle mb-5 mt-2" style="background-image:url({{ url_for('static',filename='images/'+session['user']['avatar']) }});"></a>
+          <ul class="list-unstyled px-3">
+               
+              <li class="list-unstyled nav-item active">
+                <a class="nav-link active text-white" href="{{ url_for('dashboard') }}">
+                  <span class="mdi mdi-view-dashboard"></span>
+                  Dashboard <span class="sr-only">(current)</span>
+                </a>
+              </li>  
+              
+              <li class="list-unstyled mb-2">
+                <a href="#clientSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle collapsed bg-yellow">Customers</a>
+                
+              
+              <ul class="list-unstyled collapse" id="clientSubmenu" style="">
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('search_clients') }}">
+                   <span class="mdi mdi-account-star"></span>
+                  Manage
+                </a>
+              </li>
+              {% if loggedin_user and (loggedin_user.is_super_admin() or loggedin_user.is_admin()) %}
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('registerclient') }}">
+                   <span class="mdi mdi-plus-circle"></span>
+                  Add
+                </a>
+              </li>
+              {% endif %}
+              </ul>
+              </li>
+              
+            
+            
+            {% if loggedin_user and (loggedin_user.is_super_admin() or loggedin_user.is_admin()) %}
+            <li class="list-unstyled mb-2 ">
+               <a href="#userSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle bg-yellow">Users</a>
+               
+               <ul class="list-unstyled collapse show" id="userSubmenu">
+                <li>
+                <a class="nav-link" href="{{ url_for('list_users') }}">
+                <span class="mdi mdi-account-multiple"></span>
+                Manage
+               </a>
+                </li>
+                <li>
+                <a class="nav-link" href="{{ url_for('registeruser') }}">
+                <span class="mdi mdi-account-plus"></span>
+                Add</a>
+                </li>
+                
+                </ul>
+               
+            </li>
+            {% endif %}
+            
+            
+            <li class="list-unstyled mb-2">
+               <a href="#reportSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle collapsed bg-yellow">Reporting</a>
+               
+               <ul class="list-unstyled collapse" id="reportSubmenu" style="">
+                <li>
+                
+                <a class="nav-link" href="{{ url_for('system_report') }}">
+                <span class="mdi mdi-note-text"></span>
+                System Report
+               </a>
+                </li>
+                <li>
+                <a class="nav-link" href="{{ url_for('metasys') }}">
+                <span class="mdi mdi-debug-step-into"></span>
+                Metasys</a>
+                </li>
+                
+                </ul>
+               
+            </li>
+            
+            {% if loggedin_user and (loggedin_user.is_super_admin() or loggedin_user.is_admin()) %}
+            <li class="list-unstyled mb-2">
+               <a href="#miscSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle collapsed bg-yellow">Miscellaneous</a>
+               
+               <ul class="list-unstyled collapse" id="miscSubmenu" style="">
+                <li>
+                    
+                    <a class="nav-link" href="{{ url_for('email_notify') }}">
+                    <span class="mdi mdi-email"></span>
+                    Mail
+                   </a>
+                </li>
+                
+                <li class="list-unstyled mb-1">
+                    <a href="#eulaSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle collapsed bg-yellow">Eula</a>
+                    <ul class="list-unstyled collapse" id="eulaSubmenu" style="">
+                    <li>
+                    <a class="nav-link" href="{{ url_for('eulas') }}">
+                    <span class="mdi mdi-book-open-page-variant"></span>
+                    Manage</a>
+                    </li>
+                    <li>
+                    <a class="nav-link" href="{{ url_for('create_eula') }}">
+                    <span class="mdi mdi-book-plus"></span>
+                    Add</a>
+                    </li>
+                    </ul>
+               </li>
+               
+               {% if loggedin_user and loggedin_user.is_super_admin() %}
+               <li class="list-unstyled mb-1">
+                    <a href="#regionSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle collapsed bg-yellow">Regions</a>
+                    <ul class="list-unstyled collapse" id="regionSubmenu" style="">
+                    <li>
+                    <a class="nav-link" href="{{ url_for('regions') }}">
+                    <span class="mdi mdi-map-marker-multiple"></span>
+                    Manage</a>
+                    </li>
+                    <li>
+                    <a class="nav-link" href="{{ url_for('register_region') }}">
+                    <span class="mdi mdi-map-marker-plus"></span>
+                    Add</a>
+                    </li>
+                    </ul>
+               </li>
+               {% endif %}
+               
+              </ul> 
+            </li>
+            {% endif %}
+          </ul>
+        </nav>

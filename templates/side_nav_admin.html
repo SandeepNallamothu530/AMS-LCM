@@ -1,0 +1,43 @@
+<nav id="sidebar" class="bg-nttblue">
+	<ul class="list-unstyled px-3">
+		<li class="list-unstyled nav-item active">
+			<a class="nav-link active text-white" href="{{ url_for('dashboard') }}">
+			<span class="mdi mdi-view-dashboard"></span>
+			Dashboard <span class="sr-only">(current)</span>
+			</a>
+		</li>  
+		<li class="list-unstyled mb-2">
+			<a href="#clientSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle collapsed bg-yellow">Customers</a>
+			<ul class="list-unstyled collapse" id="clientSubmenu" style="">
+				<li class="nav-item">
+					<a class="nav-link" href="{{ url_for('dashboard') }}">
+					<span class="mdi mdi-account-star"></span>
+					Manage
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ url_for('dashboard') }}">
+					<span class="mdi mdi-plus-circle"></span>
+					Add
+					</a>
+				</li>
+			</ul>
+		</li>
+		<li class="list-unstyled mb-2 ">
+			<a href="#userSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle bg-yellow">Users</a>
+			<ul class="list-unstyled collapse show" id="userSubmenu">
+				<li>
+					<a class="nav-link" href="{{ url_for('dashboard') }}">
+					<span class="mdi mdi-account-multiple"></span>
+					Manage
+					</a>
+				</li>
+				<li>
+					<a class="nav-link" href="{{ url_for('dashboard') }}">
+					<span class="mdi mdi-account-plus"></span>
+					Add</a>
+				</li>
+			</ul>
+		</li>
+	</ul> 
+</nav>

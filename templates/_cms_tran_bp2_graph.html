@@ -1,0 +1,61 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% block content %}
+<head>
+{% include 'head.html' %}
+</head>
+<body>
+	<div class="wrapper d-flex align-items-stretch">
+        <div id="content" class="p-5">
+            {% include 'header.html' %}
+            <div class="card-title p-3 mb-0">
+                <h4 class="card-title mb-0"> {{ title }}
+                    <a class="btn btn-secondary ml-2 float-right" href="{{ url_for('trans_menuitem', client=clientid) }}"><i class="mdi mdi-keyboard-backspace"></i>Back</a>
+                </h4>
+            </div>
+            <div class="dashboard">
+                <div class="card">
+                    <div class="card-header">
+                        <a href="{{ url_for('bp2_menuitem', code='Sales Doc Type', client=clientid) }}" class="title-link">Sales Doc Type</a>
+                        <span class="sap-icon"><img src="{{ url_for('static',filename='images/newhead.png') }}" /></span>
+                    </div>
+                    <div class="card-content">
+                        <div class="number-text">
+                            <div class="number">{{sdc}}</div>
+                            <div>&nbsp;Document Types</div>
+                        </div>
+                        <div class="usage high-usage"><span class="sap-icon"><img src="{{ url_for('static',filename='images/highusage.png') }}" /></span> High Usage</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a href="{{ url_for('bp2_menuitem', code= 'Purchase Doc type', client=clientid) }}" class="title-link">Purchase Doc Type</a>
+                        <span class="sap-icon"><img src="{{ url_for('static',filename='images/newhead.png') }}" /></span>
+                    </div>
+                    <div class="card-content">
+                        <div class="number-text">
+                            <div class="number">{{ pdc }}</div>
+                            <div>&nbsp;Document Types</div>
+                        </div>
+                        <div class="usage high-usage"><span class="sap-icon"><img src="{{ url_for('static',filename='images/highusage.png') }}" /></span> High Usage</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a href="{{ url_for('bp2_menuitem', code= 'Pricing Procedure', client=clientid) }}" class="title-link">Pricing Procedure</a>
+                        <span class="sap-icon"><img src="{{ url_for('static',filename='images/newhead.png') }}" /></span>
+                    </div>
+                    <div class="card-content">
+                        <div class="number-text">
+                            <div class="number">{{ppc}}</div>
+                            <div>&nbsp;Pricing Procedure</div>
+                        </div>
+                        <div class="usage high-usage"><span class="sap-icon"><img src="{{ url_for('static',filename='images/highusage.png') }}" /></span> High Usage</div>
+                    </div>
+                </div>
+            </div>
+             {% include '_footer.html' %}
+        </div>
+    </div>
+</body>
+
+{% endblock %}

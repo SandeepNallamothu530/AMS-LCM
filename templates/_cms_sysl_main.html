@@ -1,0 +1,38 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% block content %}
+<head>
+{% include 'head.html' %}
+</head>
+<body>
+	<div class="wrapper d-flex align-items-stretch">
+    <div id="content" class="p-5">
+        {% include 'header.html' %}
+        <div class="card-title p-3 mb-0">
+            <h4 class="card-title mb-0"> {{ title }}
+            <a class="btn btn-secondary ml-2 float-right" href="{{ url_for('trans_menuitem', client=clientid) }}"><i class="mdi mdi-keyboard-backspace"></i>Back</a>
+          </h4>
+          </div>
+          <div class="dashboard">
+            {% for sid in sids%}
+            <div class="card">
+                <div class="card-header">
+                    <a href="{{ url_for('sys_menugraph', sid=sid[0], client=clientid) }}" class="title-link">{{ sid[0] }}</a>
+                    <span class="sap-icon"><img src="{{ url_for('static',filename='images/newhead.png') }}" /></span>
+                </div>
+                <div class="card-content">
+                    <div class="number-text">
+                        <div class="number">{{ sid[1] }}</div>
+                        <div>&nbsp;Details</div>
+                    </div>
+                    <div class="usage high-usage"><span class="sap-icon"><img src="{{ url_for('static',filename='images/highusage.png') }}" /></span> High Usage</div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% include '_footer.html' %}
+</div>
+</div>
+</body>
+
+{% endblock %}

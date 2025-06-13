@@ -1,0 +1,83 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% block content %}
+
+<head>
+		{% include 'head.html' %}
+      </head>
+
+<body>
+ <div class="wrapper d-flex align-items-stretch">
+    {% include 'client_nav.html' %}
+    <div id="content" class="p-3">
+    {% include 'header.html' %}
+          <div class="card shadow-sm mt-4 p-3">
+  <center>
+    <h4>{{ page_title }}
+	<a class="btn btn-secondary ml-2 float-right" href="{{ url_for('search_clients') }}"><i class="mdi mdi-keyboard-backspace"></i>Back to list</a>
+	</h4>
+
+    <canvas id="chart" width="600" height="400"></canvas>
+    <script>
+
+      // bar chart data
+      var barData = {
+        labels : [
+          {% for item in labels %}
+            "{{ item }}",
+          {% endfor %}
+        ],
+
+        datasets : [{
+          fillColor: "rgba(151,187,205,0.2)",
+          strokeColor: "red",
+          pointColor: "rgba(151,187,205,1)",
+          //lineColor: "red",
+          pointStrokeColor: "aqua",
+          pointHighlightFill: "#fff",
+          pointHighlightStroke: "rgba(151,187,205,1)",
+          bezierCurve : false,
+          data : [
+	    {% for item in values %}
+              {{ item }},
+            {% endfor %}]
+          }
+	]
+      }
+
+      Chart.defaults.global.animationSteps = 50;
+      Chart.defaults.global.tooltipYPadding = 16;
+      Chart.defaults.global.tooltipCornerRadius = 0;
+      Chart.defaults.global.tooltipTitleFontStyle = "normal";
+      Chart.defaults.global.tooltipFillColor = "rgba(0,0,0,0.8)";
+      Chart.defaults.global.animationEasing = "easeOutBounce";
+      Chart.defaults.global.responsive = false;
+      Chart.defaults.global.scaleLineColor = "black";
+      Chart.defaults.global.scaleFontSize = 16;
+
+      // get bar chart canvas
+      var mychart = document.getElementById("chart").getContext("2d");
+
+      steps = 10
+      max = {{ max }}
+      // draw bar chart
+      var LineChartDemo = new Chart(mychart).Line(barData, {
+        scaleOverride: true,
+        scaleSteps: steps,
+        scaleStepWidth: Math.ceil(max / steps),
+        scaleStartValue: 0,
+        scaleShowVerticalLines: true,
+        scaleShowGridLines : true,
+        barShowStroke : true,
+        scaleShowLabels: true,
+        bezierCurve: false,
+      });
+
+    </script>
+  </center>
+</div>
+
+  {% include '_footer.html' %}
+  </div>
+  </div>
+</body>
+{% endblock %}

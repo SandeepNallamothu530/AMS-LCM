@@ -1,0 +1,8 @@
+applications:
+- name: apptransnew
+  memory: 512M
+  random-route: true
+  path: ./
+  buildpacks:
+    - python_buildpack
+  command: python main.py

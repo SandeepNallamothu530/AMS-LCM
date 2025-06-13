@@ -1,0 +1,19 @@
+{% block content %}
+<html>
+<head>
+{% include 'head.html' %}
+</head>
+<body>
+<div class="wrapper d-flex align-items-stretch">
+<div id="content" class="p-3">
+
+<ul>
+ {% for file in files %}
+  <li> <a href="{{ url_for('download_logs', filename=file) }}"><i class="mdi mdi-download mr-2" aria-hidden="true"></i>{{ file }}</a></li>
+ {% endfor %}
+</ul>
+
+{% include '_footer.html' %}
+</div>
+</div>
+{% endblock %}

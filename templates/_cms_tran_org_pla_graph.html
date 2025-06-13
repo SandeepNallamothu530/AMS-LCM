@@ -1,0 +1,79 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% block content %}
+<head>
+{% include 'head.html' %}
+</head>
+<body>
+    
+	<div class="wrapper d-flex align-items-stretch">
+        {% include 'side_nav_org.html' %}
+    <div id="content" class="p-3">
+        {% include 'header.html' %}
+        <div class="card-title p-3 mb-0">
+            <h4 class="card-title mb-0 color: #060D25"> {{ title }}
+            <a class="btn btn-secondary ml-2 float-right" href="{{ url_for('trans_menuitem', client=clientid) }}"><i class="mdi mdi-keyboard-backspace"></i>Back</a>
+          </h4>
+          </div>
+        <div class="row">
+            <div class="col-lg-3 col-sm-6">
+                <div class="card-box bg-white">
+                    <h4>Plant</h4>
+                    <div class="chart-container">
+                    <canvas id="bpmChart1"></canvas>
+                    <div class="chart-center" id="bpmCC1"></div>
+                    </div>
+                    <br>
+                    <a href="{{ url_for('pla_details', soln='Plant', client=clientid) }}"  class="card-box-footer">View Details  <i class="fa fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include '_footer.html' %}
+</div>
+</div>
+</body>
+{% endblock %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const chartData = [
+            { id: 'bpmChart1', centerId: 'bpmCC1', title: 'Plant',
+			data: {
+                labels: ['Standard', 'Customized'],
+                datasets: [{
+                    data: [6, 0],
+                    backgroundColor: ['#19A3FC', '#D1EDFE'],
+                    hoverBackgroundColor: ['#1BB5FF', '#E0F4FF']
+                }]
+            }}
+        ];
+
+        chartData.forEach(chart => {
+            const ctx = document.getElementById(chart.id).getContext('2d');
+            const data = chart.data;
+            const total = data.datasets[0].data.reduce((a, b) => a + b, 0);
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'bottom'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(tooltipItem) {
+                                    return `${tooltipItem.label}: ${tooltipItem.raw}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            document.getElementById(chart.centerId).innerText = `Total: ${total}`;
+        });
+    </script>

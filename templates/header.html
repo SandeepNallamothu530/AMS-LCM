@@ -1,0 +1,23 @@
+<header class="navbar navbar-light bg-light p-0 shadow fixed-top" id="itxheader" style="margin-left: 0px;">
+        
+        <button type="button" id="sidebarCollapse" class="btn  ml-2" disabled>
+        <i class="fa fa-bars"></i>
+        <span class="sr-only">Toggle Menu</span>
+        </button>
+        <h2 style="color:#00008B; font-weight: 2rem;">NTT Data - AMS Life Cycle Management</h2>
+          
+          <div class="dropdown profileDropdown">
+            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           
+                  <h4 class="f_s_15 f_w_500 mb-0" style="color:#00008B">AMS LCM, Admin</h4>
+                  <span class="f_s_12 f_w_400">SUPER_ADMIN</span>
+              </button>
+          <div class="dropdown-menu dropdown-menu-right">
+            <a class="dropdown-item" href="#"><i class="mdi mdi-clipboard-account mr-2"></i>Profile</a>
+			      <a class="dropdown-item" target="_blank" href="#"><i class="mdi mdi-help-circle mr-2" aria-hidden="true"></i>User Guide</a>
+			      <a class="dropdown-item" target="_blank" href="#"><i class="mdi mdi-file-document mr-2" aria-hidden="true"></i>Server Logs</a>
+			      <a class="dropdown-item" href="{{ url_for('logout') }}"><i class="mdi mdi-power mr-2"></i>Logout </a>           
+          </div>
+        </div>   
+  
+      </header>
